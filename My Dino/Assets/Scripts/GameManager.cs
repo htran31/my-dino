@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     public float score { get; private set; }
     public float Score => score;
-    private Camera mainCamera;
+    //private Camera mainCamera;
     private bool cameraMoved = false;
     private float cameraStopY = -10f; // The Y-position at which the camera should stop moving
     private Vector3 initialCameraPosition;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         {
             DestroyImmediate(gameObject);
         }
-        mainCamera = Camera.main;
+        //mainCamera = Camera.main;
     }
 
 
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         initialGroundPosition = ground.transform.position;
         // }
 
-        initialCameraPosition = mainCamera.transform.position;
+        //initialCameraPosition = mainCamera.transform.position;
         playerStartGamePosition = player.transform.position;
 
         NewGame();
@@ -90,7 +90,8 @@ public class GameManager : MonoBehaviour
             Destroy(obstacle.gameObject);
         }
 
-        mainCamera.transform.position = initialCameraPosition;
+        //mainCamera.transform.position = initialCameraPosition;
+        CameraController.cameraDirection = CameraDirection.DINO;
         ground.transform.position = initialGroundPosition;
         player.transform.position = playerStartGamePosition;
         player.gameObject.SetActive(true);
@@ -136,7 +137,8 @@ public class GameManager : MonoBehaviour
         if (score >= 44 && score <= 55)
         {
             // spawner.gameObject.SetActive(false);
-            mainCamera.transform.Translate(Vector3.down * 0.0254f);
+            //mainCamera.transform.Translate(Vector3.down * 0.0254f);
+            CameraController.cameraDirection = CameraDirection.FB;
         }
         // Check for the score reaching 60
         if (score >= 60)
