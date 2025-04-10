@@ -18,7 +18,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] float movingProportion;
 
 
-
     public static CameraDirection cameraDirection = CameraDirection.DINO;
 
     // Start is called before the first frame update
