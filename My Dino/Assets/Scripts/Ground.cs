@@ -6,15 +6,12 @@ public class Ground : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
     private GameManager gameManager;
-
     public float moveSpeed = 10f;
     private bool isMovingOut = false;
+    private bool canScroll = true;
     private Coroutine moveOutCoroutine;
-
     private Vector3 initialPosition;
     private Vector2 initialTextureOffset;
-
-    private bool canScroll = true;
 
     private void Awake()
     {
@@ -57,7 +54,6 @@ public class Ground : MonoBehaviour
         Vector3 end = start + Vector3.left * 30f;
         float duration = 5f; // Total time to move out
         float elapsed = 0f;
-
 
         while (elapsed < duration)
         {

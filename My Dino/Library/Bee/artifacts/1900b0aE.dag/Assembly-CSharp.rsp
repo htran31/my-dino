@@ -376,6 +376,7 @@
 "Assets/box.cs"
 "Assets/Scripts/AnimatedSprite.cs"
 "Assets/Scripts/BigDino.cs"
+"Assets/Scripts/CameraController.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Ground.cs"
 "Assets/Scripts/Heart.cs"

@@ -1,3 +1,4 @@
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,28 +7,27 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
-    public float initialGameSpeed = 5f;
-    public float gameSpeedIncrease = 0.1f;
-    public float gameSpeed { get; private set; }
-
     // [SerializeField] private TextMeshProUGUI scoreText;
     // [SerializeField] private TextMeshProUGUI hiscoreText;
     // [SerializeField] private TextMeshProUGUI gameOverText;
     // [SerializeField] private Button retryButton;
+
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI hiscoreText;
     public Button retryButton;
-
     private Player player;
-    private Spawner spawner;
+    public Spawner spawner;
+    public Parallax seaweed;
     private Ground ground;
     private Vector3 initialGroundPosition;
 
+    public float initialGameSpeed = 5f;
+    public float gameSpeedIncrease = 0.1f;
+    public float gameSpeed { get; private set; }
     public float score { get; private set; }
     public float Score => score;
-    //private Camera mainCamera;
+    // private Camera mainCamera;
     private bool cameraMoved = false;
     private float cameraStopY = -10f; // The Y-position at which the camera should stop moving
     private Vector3 initialCameraPosition;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         {
             DestroyImmediate(gameObject);
         }
-        //mainCamera = Camera.main;
+        // mainCamera = Camera.main;
     }
 
 
@@ -68,14 +68,10 @@ public class GameManager : MonoBehaviour
     {
         ground = FindObjectOfType<Ground>();
         player = FindObjectOfType<Player>();
-        spawner = FindObjectOfType<Spawner>();
+        //spawner = FindObjectOfType<Spawner>();
 
-        // if (ground != null)
-        // {
         initialGroundPosition = ground.transform.position;
-        // }
-
-        //initialCameraPosition = mainCamera.transform.position;
+        // initialCameraPosition = mainCamera.transform.position;
         playerStartGamePosition = player.transform.position;
 
         NewGame();
@@ -90,11 +86,19 @@ public class GameManager : MonoBehaviour
             Destroy(obstacle.gameObject);
         }
 
-        //mainCamera.transform.position = initialCameraPosition;
+        // mainCamera.transform.position = initialCameraPosition;
         CameraController.cameraDirection = CameraDirection.DINO;
         ground.transform.position = initialGroundPosition;
         player.transform.position = playerStartGamePosition;
+
+        player.ResetPlayer();
+
         player.gameObject.SetActive(true);
+        spawner.gameObject.SetActive(true);
+        seaweed.gameObject.SetActive(false);
+        gameOverText.gameObject.SetActive(false);
+        retryButton.gameObject.SetActive(false);
+
         if (ground != null)
         {
             ground.gameObject.SetActive(true);
@@ -105,12 +109,6 @@ public class GameManager : MonoBehaviour
         score = 0f;
         gameSpeed = initialGameSpeed;
         enabled = true;
-
-        player.gameObject.SetActive(true);
-        spawner.gameObject.SetActive(true);
-        gameOverText.gameObject.SetActive(false);
-        retryButton.gameObject.SetActive(false);
-
         UpdateHiscore();
     }
 
@@ -121,6 +119,7 @@ public class GameManager : MonoBehaviour
 
         player.gameObject.SetActive(false);
         spawner.gameObject.SetActive(false);
+        seaweed.gameObject.SetActive(false);
         ground.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
@@ -136,14 +135,23 @@ public class GameManager : MonoBehaviour
 
         if (score >= 44 && score <= 55)
         {
-            // spawner.gameObject.SetActive(false);
-            //mainCamera.transform.Translate(Vector3.down * 0.0254f);
+            //spawner.gameObject.SetActive(false);
+            // mainCamera.transform.Translate(Vector3.down * 0.0254f);
             CameraController.cameraDirection = CameraDirection.FB;
         }
         // Check for the score reaching 60
         if (score >= 60)
         {
-            RespawnObstacles(); // Call the method to respawn obstacles
+            // RespawnObstacles(); // Call the method to respawn obstacles
+            spawner.gameObject.SetActive(false);
+            seaweed.gameObject.SetActive(true);
+            player.CheckOutOfBounds();
+        }
+
+        if (score >= 30 && score <= 55)
+        {
+            spawner.gameObject.SetActive(false);
+            seaweed.gameObject.SetActive(false);
         }
 
         UpdateHiscore();
@@ -170,5 +178,4 @@ public class GameManager : MonoBehaviour
 
         hiscoreText.text = Mathf.FloorToInt(hiscore).ToString("D5");
     }
-
 }

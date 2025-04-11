@@ -4,25 +4,36 @@ public class Player : MonoBehaviour
 {
     private CharacterController character;
     private Vector3 direction;
-     private Vector3 initialPosition;
+    private Vector3 initialPosition;
 
-    public float gravity = 9.81f * 2f;
-    public float jumpForce = 8f;
+
+    public float initialGravity = 9.81f * 2f;
+    public float initialJumpForce = 8f;
+    public float initialStrength = 5f;
+    public float initialTilt = 5f;
+
+
+    public float gravity { get; private set; }
+    public float jumpForce { get; private set; }
+    public float strength { get; private set; }
+    public float tilt { get; private set; }
     private bool canJump = false;
-    private bool isPaused = false; 
-
+    private bool isPaused = false;
     // private bool isSpeedBoosted = false;
     private float speedBoostEndTime = 0f;
     private float originalGameSpeed;
 
 
-public float strength = 5f;
-public float tilt = 5f;
 
     private void Awake()
     {
         character = GetComponent<CharacterController>();
         initialPosition = transform.position;
+
+        gravity = initialGravity;
+        jumpForce = initialJumpForce;
+        strength = initialStrength;
+        tilt = initialTilt;
     }
 
     private void OnEnable()
@@ -30,65 +41,57 @@ public float tilt = 5f;
         direction = Vector3.zero;
     }
 
-    private void Update() 
+    private void Update()
     {
-        
         if (!isPaused)
         {
-        direction += Vector3.down * gravity * Time.deltaTime;
+            direction += Vector3.down * gravity * Time.deltaTime;
 
-        if (character.isGrounded)
-        {
-            direction = Vector3.down;
-            if (Input.GetButton("Jump")  )
+            if (character.isGrounded)
             {
-                direction = Vector3.up * jumpForce;
+                direction = Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) ? Vector3.up * jumpForce : Vector3.down;
             }
-        }
 
-        character.Move(direction * Time.deltaTime);
+            character.Move(direction * Time.deltaTime);
 
-        // if (isSpeedBoosted && Time.time >= speedBoostEndTime)
-        // {
-        //     // Speed boost has ended, reset the game speed to its original value
-        //     GameManager.Instance.gameSpeed = originalGameSpeed;
-        //     isSpeedBoosted = false;
-        // }
+            // if (isSpeedBoosted && Time.time >= speedBoostEndTime)
+            // {
+            //     // Speed boost has ended, reset the game speed to its original value
+            //     GameManager.Instance.gameSpeed = originalGameSpeed;
+            //     isSpeedBoosted = false;
+            // }
 
-        // Check for player's score (assuming you have a GameManager script controlling the score)
-        if (GameManager.Instance.score >= 50)
-        {
-            // Reset the gravity
-            gravity = 9.8f;
-            if (Input.GetButton("Jump")  )
+            // Check for player's score (assuming you have a GameManager script controlling the score)
+            if (GameManager.Instance.score >= 50)
             {
-                direction = Vector3.up * strength;
-            }
-            if (Input.touchCount > 0) {
-                Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began) {
+                // Reset the gravity
+                gravity = 9.8f;
+                if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
+                {
                     direction = Vector3.up * strength;
                 }
+                // Apply gravity and update the position
+                direction += Vector3.down * gravity * Time.deltaTime;
+                transform.position += direction * Time.deltaTime;
+
+                // Tilt the bird based on the direction
+                Vector3 rotation = transform.eulerAngles;
+                rotation.z = direction.y * tilt;
+                transform.eulerAngles = rotation;
             }
-            // Apply gravity and update the position
-        direction +=  Vector3.down *gravity * Time.deltaTime;
-        transform.position += direction * Time.deltaTime;
-
-        // Tilt the bird based on the direction
-        Vector3 rotation = transform.eulerAngles;
-        rotation.z = direction.y * tilt;
-        transform.eulerAngles = rotation;
-        }
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Obstacle")) {
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Obstacle"))
+        {
             GameManager.Instance.GameOver();
+            Debug.Log("Game Over 1" + other.gameObject);
+            Debug.Log("Game Over 1");
         }
-       
-       
     }
+
     public void CanJumpOnGround(bool canJumpOnGround)
     {
         canJump = canJumpOnGround;
@@ -109,17 +112,30 @@ public float tilt = 5f;
     public void Pause()
     {
         isPaused = true; // Set the isPaused flag to true to pause the player
-        // Optionally, you can stop any player movement or animations here
     }
-    
+
+    public void CheckOutOfBounds()
+    {
+        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        // If player out of camera frame follow x-axis or y-axis
+        if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
+        {
+            GameManager.Instance.GameOver();
+            Debug.Log("Game Over 2");
+        }
+    }
+
+
     public void ResetPlayer()
     {
         // Reset the player's position to the initial position
         transform.position = initialPosition;
-        
+
         // Reset any other variables or states as needed
         direction = Vector3.zero;
         isPaused = false; // Ensure the player is not paused
+        gravity = initialGravity;
     }
 }
 

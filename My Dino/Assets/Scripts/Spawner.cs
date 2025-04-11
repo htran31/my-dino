@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour
     }
 
     public SpawnableObject[] objects;
+    private GameManager gameManager;
     public float minSpawnRate = 1f;
     public float maxSpawnRate = 2f;
 
@@ -26,6 +27,8 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
+        // if (!gameObject.activeInHierarchy) return; 
+        
         float spawnChance = Random.value;
 
         foreach (SpawnableObject obj in objects)
@@ -42,5 +45,4 @@ public class Spawner : MonoBehaviour
 
         Invoke(nameof(Spawn), Random.Range(minSpawnRate, maxSpawnRate));
     }
-
 }
