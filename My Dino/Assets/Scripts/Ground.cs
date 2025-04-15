@@ -49,7 +49,6 @@ public class Ground : MonoBehaviour
     private IEnumerator MoveOutRoutine()
     {
         // Vector3 targetPosition = transform.position + Vector3.left * 30f; // Move left out of view
-
         Vector3 start = transform.position;
         Vector3 end = start + Vector3.left * 30f;
         float duration = 5f; // Total time to move out
@@ -86,4 +85,15 @@ public class Ground : MonoBehaviour
         isMovingOut = false;
         canScroll = true;
     }
+
+    public void EnableScroll()
+    {
+        canScroll = true;
+    }
+
+    public void DisableScroll()
+    {
+        canScroll = false;
+    }
+
 }

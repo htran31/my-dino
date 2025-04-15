@@ -1,29 +1,31 @@
-// using UnityEngine;
+using UnityEngine;
 
-// public class BigDino : MonoBehaviour
-// {
-//     private CharacterController character;
-//     private Vector3 direction;
+public class BigDino : MonoBehaviour
+{
+    public Vector3 startPosition = new Vector3(-9f, -19.19f, 0f);
+    public Vector3 targetPosition = new Vector3(-6f, -19.19f, 0f);
+    public float moveSpeed = 2f;
 
-//     public float gravity = 9.81f * 2f;
-//     public float jumpForce = 8f;
+    private bool isMoving = true;
 
-//     private void Awake()
-//     {
-//         character = GetComponent<CharacterController>();
-//     }
+    void Start()
+    {
+        transform.position = startPosition;
+    }
 
-//     private void OnEnable()
-//     {
-//         direction = Vector3.zero;
-//     }
+    void Update()
+    {
+        if (isMoving)
+        {
+            // Di chuyển BigDino đến targetPosition
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
-//     private void Update() 
-//     {
-       
-//     }
-
-//     private void OnTriggerEnter(Collider other) {
-       
-//     }
-// }
+            // Khi đến nơi thì dừng lại
+            if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
+            {
+                transform.position = targetPosition;
+                isMoving = false;
+            }
+        }
+    }
+}

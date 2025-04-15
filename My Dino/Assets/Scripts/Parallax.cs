@@ -6,7 +6,7 @@ public class Parallax : MonoBehaviour
     public struct SpawnableObject
     {
         public GameObject prefab;
-        [Range(0f, 1f)]
+        [Range(0f, 0.5f)]
         public float spawnChance;
     }
 
@@ -29,10 +29,9 @@ public class Parallax : MonoBehaviour
         // if (!gameObject.activeInHierarchy) return; 
 
         float spawnChance = Random.value;
-        float randomY = Random.Range(0f, 4f);
+        float randomY = Random.Range(0f, 2f);
+        Debug.Log(randomY);
         Vector3 seaweedPosition = new Vector3(transform.position.x, randomY, transform.position.z);
-        Debug.Log("randomY" + randomY);
-        Debug.Log("seaweedPosition" + seaweedPosition);
 
         foreach (SpawnableObject obj in objects)
         {
@@ -48,5 +47,4 @@ public class Parallax : MonoBehaviour
 
         Invoke(nameof(Spawn), Random.Range(minSpawnRate, maxSpawnRate));
     }
-
 }

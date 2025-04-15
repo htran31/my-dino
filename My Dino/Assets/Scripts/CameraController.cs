@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
 
     private CameraDirection lastCameraDirection;
     public static CameraDirection cameraDirection = CameraDirection.DINO;
-    private float slowSpeed = 0.0225f;
+    private float slowSpeed = 0.02f;
     private float fastSpeed = 0.1f;
 
 

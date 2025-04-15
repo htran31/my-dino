@@ -25,10 +25,17 @@ public class Player : MonoBehaviour
 
 
 
+    private float horizontalSpeed = 0f;
+    private float acceleration = 5f;
+    private float deceleration = 2f;
+    private float maxSpeed = 8f;
+
+
+
     private void Awake()
     {
         character = GetComponent<CharacterController>();
-        initialPosition = transform.position;
+        initialPosition = new Vector3(-5f, 0, 0);
 
         gravity = initialGravity;
         jumpForce = initialJumpForce;
@@ -43,8 +50,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!isPaused)
+        if (!isPaused && GameManager.Instance.gameOver == false)
         {
+
+            float score = GameManager.Instance.score;
             direction += Vector3.down * gravity * Time.deltaTime;
 
             if (character.isGrounded)
@@ -62,7 +71,7 @@ public class Player : MonoBehaviour
             // }
 
             // Check for player's score (assuming you have a GameManager script controlling the score)
-            if (GameManager.Instance.score >= 50)
+            if (score >= 50)
             {
                 // Reset the gravity
                 gravity = 9.8f;
@@ -79,6 +88,27 @@ public class Player : MonoBehaviour
                 rotation.z = direction.y * tilt;
                 transform.eulerAngles = rotation;
             }
+
+            if (score >= 155)
+            {
+                direction = Vector3.zero;
+                gravity = 1119.8f;
+
+                if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
+                {
+                    horizontalSpeed += acceleration * Time.deltaTime;
+                    horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);
+                }
+                else
+                {
+                    // Nếu không nhấn gì => từ từ chậm lại về bên trái
+                    horizontalSpeed -= deceleration * Time.deltaTime;
+                    horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);
+                }
+
+                // Di chuyển theo trục X
+                character.Move(new Vector3(horizontalSpeed, 0, 0) * Time.deltaTime);
+            }
         }
     }
 
@@ -87,8 +117,6 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             GameManager.Instance.GameOver();
-            Debug.Log("Game Over 1" + other.gameObject);
-            Debug.Log("Game Over 1");
         }
     }
 
@@ -122,7 +150,6 @@ public class Player : MonoBehaviour
         if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
         {
             GameManager.Instance.GameOver();
-            Debug.Log("Game Over 2");
         }
     }
 
@@ -131,6 +158,7 @@ public class Player : MonoBehaviour
     {
         // Reset the player's position to the initial position
         transform.position = initialPosition;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
 
         // Reset any other variables or states as needed
         direction = Vector3.zero;

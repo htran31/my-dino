@@ -1,5 +1,3 @@
-
-
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -40,7 +38,6 @@ public class AnimatedSprite : MonoBehaviour
 
         Invoke(nameof(Animate), 1f / GameManager.Instance.gameSpeed);
     }
-
 }
 
 
