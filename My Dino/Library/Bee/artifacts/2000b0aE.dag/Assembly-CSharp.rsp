@@ -358,6 +358,8 @@
 "Assets/Scripts/BigDino.cs"
 "Assets/Scripts/CameraController.cs"
 "Assets/Scripts/FallingBackground.cs"
+"Assets/Scripts/FallingObstacle.cs"
+"Assets/Scripts/FallingSpawner.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Ground.cs"
 "Assets/Scripts/Heart.cs"
