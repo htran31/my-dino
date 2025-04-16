@@ -3,9 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class AnimatedSprite : MonoBehaviour
 {
-    public Sprite[] sprites;
+    public Sprite[] spritesDino;
     private SpriteRenderer spriteRenderer;
     private int frame;
+    public Sprite[] spritesTrex;
+    private Sprite[] sprites;
 
     private void Awake()
     {
@@ -14,6 +16,7 @@ public class AnimatedSprite : MonoBehaviour
 
     private void OnEnable()
     {
+        sprites = spritesDino;
         Invoke(nameof(Animate), 0f);
     }
 
@@ -37,6 +40,12 @@ public class AnimatedSprite : MonoBehaviour
         }
 
         Invoke(nameof(Animate), 1f / GameManager.Instance.gameSpeed);
+    }
+    public void startAnimTrex()
+    {
+        CancelInvoke();
+        sprites = spritesTrex;
+        Invoke(nameof(Animate), 0f);
     }
 }
 

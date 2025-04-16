@@ -119,7 +119,6 @@ public class GameManager : MonoBehaviour
     public void NewGame()
     {
         SoundManager.Instance.PlayGameOveround();
-        player.ResetPlayer();
         Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
         FallingObstacle[] fallingObstacles = FindObjectsOfType<FallingObstacle>();
 
@@ -149,6 +148,7 @@ public class GameManager : MonoBehaviour
         //player.ResetPlayer();
 
         player.gameObject.SetActive(true);
+        player.ResetPlayer();
         spawner.gameObject.SetActive(true);
         fallingBackground1.gameObject.SetActive(true);
         fallingBackground2.gameObject.SetActive(true);

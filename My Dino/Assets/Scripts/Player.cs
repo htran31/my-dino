@@ -30,12 +30,13 @@ public class Player : MonoBehaviour
     private float deceleration = 2f;
     private float maxSpeed = 8f;
 
+    public GameObject hat;
 
 
     private void Awake()
     {
         character = GetComponent<CharacterController>();
-        initialPosition = new Vector3(-5f, 0, 0);
+        initialPosition = new Vector3(-3.55f, 0, 0);
 
         gravity = initialGravity;
         jumpForce = initialJumpForce;
@@ -46,6 +47,10 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         direction = Vector3.zero;
+    }
+    private void OnDisable()
+    {
+        transform.position = initialPosition;
     }
 
     private void Update()
@@ -123,6 +128,13 @@ public class Player : MonoBehaviour
             GameManager.Instance.GameOver();
             Debug.Log("AnhNTT: " + other.ToString());
         }
+        else if (other.CompareTag("OptionPlayer"))
+        {
+            hat.SetActive(true);
+            Destroy(other.gameObject);
+            FindObjectOfType<AnimatedSprite>().startAnimTrex();
+            Debug.Log("AnhNTT: " + other.ToString());
+        }
     }
 
     public void CanJumpOnGround(bool canJumpOnGround)
@@ -163,9 +175,8 @@ public class Player : MonoBehaviour
     public void ResetPlayer()
     {
         // Reset the player's position to the initial position
-        transform.position = initialPosition;
         transform.rotation = Quaternion.Euler(Vector3.zero);
-
+        hat.SetActive(false);
         // Reset any other variables or states as needed
         direction = Vector3.zero;
         isPaused = false; // Ensure the player is not paused
