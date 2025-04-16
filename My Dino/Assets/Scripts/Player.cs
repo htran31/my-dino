@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
 
             if (score >= 245)
             {
+                //FindObjectOfType<FlashEffect>().TriggerFlash();
                 direction = Vector3.zero;
                 gravity = 1119.8f;
 
@@ -109,7 +110,7 @@ public class Player : MonoBehaviour
 
                 // Di chuyển theo trục X
                 //character.Move(new Vector3(horizontalSpeed, 0, 0) * Time.deltaTime);
-                direction += Vector3.left * 500f * Time.deltaTime;
+                direction += Vector3.left * 2.5f;
                 transform.position += direction * Time.deltaTime;
             }
         }
@@ -120,6 +121,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             GameManager.Instance.GameOver();
+            Debug.Log("AnhNTT: " + other.ToString());
         }
     }
 
@@ -153,6 +155,7 @@ public class Player : MonoBehaviour
         if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
         {
             GameManager.Instance.GameOver();
+            Debug.Log("AnhNTT 2: ");
         }
     }
 
