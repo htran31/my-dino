@@ -14,6 +14,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip sfxGameOverClip;
     public AudioClip sfxStartGameClip;
 
+    [Header("Button")]
+    public GameObject buttonOn;
+    public GameObject buttonOff;
+
 
     void Awake()
     {
@@ -71,9 +75,20 @@ public class SoundManager : MonoBehaviour
 
     public void SetMuteVolume(bool status)
     {
+         
         //sfxTouchSource.volume = volume;
         sfxTouchSource.mute = status;
         sfxGameOverSource.mute = status;
         sfxStartGameSource.mute = status;
+        if (status == true)
+        {
+            buttonOn.SetActive(false);
+            buttonOff.SetActive(true);
+        }
+        else
+        {
+            buttonOn.SetActive(true);
+            buttonOff.SetActive(false);
+        }    
     }
 }
