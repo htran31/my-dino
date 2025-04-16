@@ -65,11 +65,13 @@
     <Compile Include="Assets\Scripts\FallingBackground.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\InstructionManager.cs" />
     <Compile Include="Assets\Scripts\BigDino.cs" />
     <Compile Include="Assets\Scripts\Heart.cs" />
     <Compile Include="Assets\box.cs" />
     <Compile Include="Assets\Scripts\AnimatedSprite.cs" />
     <Compile Include="Assets\Scripts\FallingSpawner.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
   </ItemGroup>
   <ItemGroup>

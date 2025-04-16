@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
-        SoundManager.Instance.PlayGameOveround();
+        player.ResetPlayer();
         Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
         FallingObstacle[] fallingObstacles = FindObjectsOfType<FallingObstacle>();
 
@@ -148,7 +148,6 @@ public class GameManager : MonoBehaviour
         //player.ResetPlayer();
 
         player.gameObject.SetActive(true);
-        player.ResetPlayer();
         spawner.gameObject.SetActive(true);
         fallingBackground1.gameObject.SetActive(true);
         fallingBackground2.gameObject.SetActive(true);
@@ -178,7 +177,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        SoundManager.Instance.PlayGameOveround();
         gameSpeed = 0f;
         gameOver = true;
         // enabled = false;
@@ -209,10 +207,6 @@ public class GameManager : MonoBehaviour
                 OnStartButtonClicked();
             }
             return;
-        }
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0) 
-        {
-            SoundManager.Instance.PlayClickSound();
         }
 
         gameSpeed += gameSpeedIncrease * Time.deltaTime;
@@ -284,7 +278,6 @@ public class GameManager : MonoBehaviour
 
         if (score >= 250 && score <= 400 && !hasSpawnedBigDino)
         {
-            FindObjectOfType<FlashEffect>().TriggerFlash(2f);
             hasSpawnedBigDino = true;
             bigDino.gameObject.SetActive(true);
             seaweed.gameObject.SetActive(false);

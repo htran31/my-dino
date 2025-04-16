@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -31,13 +30,12 @@ public class Player : MonoBehaviour
     private float deceleration = 2f;
     private float maxSpeed = 8f;
 
-    public GameObject hat;
 
 
     private void Awake()
     {
         character = GetComponent<CharacterController>();
-        initialPosition = new Vector3(-3.55f, 0, 0);
+        initialPosition = new Vector3(-5f, 0, 0);
 
         gravity = initialGravity;
         jumpForce = initialJumpForce;
@@ -48,10 +46,6 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         direction = Vector3.zero;
-    }
-    private void OnDisable()
-    {
-        transform.position = initialPosition;
     }
 
     private void Update()
@@ -64,7 +58,7 @@ public class Player : MonoBehaviour
 
             if (character.isGrounded)
             {
-                direction = (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) || Input.touchCount > 0) && !EventSystem.current.IsPointerOverGameObject() ? Vector3.up * jumpForce : Vector3.down;
+                direction = Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) ? Vector3.up * jumpForce : Vector3.down;
             }
 
             character.Move(direction * Time.deltaTime);
@@ -81,7 +75,7 @@ public class Player : MonoBehaviour
             {
                 // Reset the gravity
                 gravity = 9.8f;
-                if ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) || Input.touchCount > 0) && !EventSystem.current.IsPointerOverGameObject())
+                if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
                 {
                     direction = Vector3.up * strength;
                 }
@@ -97,25 +91,24 @@ public class Player : MonoBehaviour
 
             if (score >= 245)
             {
-                //FindObjectOfType<FlashEffect>().TriggerFlash();
                 direction = Vector3.zero;
                 gravity = 1119.8f;
 
-                if ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) || Input.touchCount > 0) && !EventSystem.current.IsPointerOverGameObject())
+                if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
                 {
-                    //horizontalSpeed += acceleration * Time.deltaTime;
-                    //horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);
+                    // horizontalSpeed += acceleration * Time.deltaTime;
+                    // horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);
                     direction = Vector3.right * strength;
                 }
                 else
                 {
                     // Nếu không nhấn gì => từ từ chậm lại về bên trái
-                    //horizontalSpeed -= deceleration * Time.deltaTime;
-                    //horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);
+                    // horizontalSpeed -= deceleration * Time.deltaTime;
+                    // horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);
                 }
 
                 // Di chuyển theo trục X
-                //character.Move(new Vector3(horizontalSpeed, 0, 0) * Time.deltaTime);
+                // character.Move(new Vector3(horizontalSpeed, 0, 0) * Time.deltaTime);
                 direction += Vector3.left * 2.5f;
                 transform.position += direction * Time.deltaTime;
             }
@@ -127,14 +120,6 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             GameManager.Instance.GameOver();
-            Debug.Log("AnhNTT: " + other.ToString());
-        }
-        else if (other.CompareTag("OptionPlayer"))
-        {
-            hat.SetActive(true);
-            Destroy(other.gameObject);
-            FindObjectOfType<AnimatedSprite>().startAnimTrex();
-            Debug.Log("AnhNTT: " + other.ToString());
         }
     }
 
@@ -168,7 +153,6 @@ public class Player : MonoBehaviour
         if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
         {
             GameManager.Instance.GameOver();
-            Debug.Log("AnhNTT 2: ");
         }
     }
 
@@ -176,8 +160,9 @@ public class Player : MonoBehaviour
     public void ResetPlayer()
     {
         // Reset the player's position to the initial position
+        transform.position = initialPosition;
         transform.rotation = Quaternion.Euler(Vector3.zero);
-        hat.SetActive(false);
+
         // Reset any other variables or states as needed
         direction = Vector3.zero;
         isPaused = false; // Ensure the player is not paused

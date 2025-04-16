@@ -1,94 +1,63 @@
 using UnityEngine;
+using UnityEngine.UI;
+
+public enum SoundState
+{
+    AllOn,          // Nhạc + hiệu ứng mở
+    MusicMuted,     // Tắt nhạc nền
+    AllMuted        // Tắt cả 2
+}
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance;
+    public Button soundToggleButton;
+    public Sprite[] soundStateIcons;
+    public AudioSource backgroundMusic;
+    public AudioSource[] effectSounds;
 
-    [Header("Audio Sources")]
-    public AudioSource sfxGameOverSource;
-    public AudioSource sfxTouchSource;
-    public AudioSource sfxStartGameSource;
-
-    [Header("Audio Clips")]
-    public AudioClip clickSFX;
-    public AudioClip sfxGameOverClip;
-    public AudioClip sfxStartGameClip;
-
-    [Header("Button")]
-    public GameObject buttonOn;
-    public GameObject buttonOff;
-
-
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    private SoundState currentSoundState = SoundState.AllOn;
 
     void Start()
     {
-        //PlayBGM();
+        UpdateSoundState();
+        soundToggleButton.onClick.AddListener(OnSoundToggleClicked);
     }
 
-    //public void PlayBGM()
-    //{
-    //    if (bgmClip != null)
-    //    {
-    //        bgmSource.clip = bgmClip;
-    //        bgmSource.loop = true;
-    //        bgmSource.Play();
-    //    }
-    //}
-
-    public void PlaySFX(AudioClip clip)
+    void OnSoundToggleClicked()
     {
-        if (clip != null)
+        currentSoundState = (SoundState)(((int)currentSoundState + 1) % 3);
+        UpdateSoundState();
+    }
+
+    void UpdateSoundState()
+    {
+        switch (currentSoundState)
         {
-            sfxTouchSource.PlayOneShot(clip);
+            case SoundState.AllOn:
+                backgroundMusic.mute = false;
+                SetEffectsMute(false);
+                break;
+
+            case SoundState.MusicMuted:
+                backgroundMusic.mute = true;
+                SetEffectsMute(false);
+                break;
+
+            case SoundState.AllMuted:
+                backgroundMusic.mute = true;
+                SetEffectsMute(true);
+                break;
         }
+
+        // Cập nhật icon tương ứng
+        soundToggleButton.image.sprite = soundStateIcons[(int)currentSoundState];
     }
 
-    public void PlayClickSound()
+    void SetEffectsMute(bool mute)
     {
-        PlaySFX(clickSFX);
-    }
-    public void PlayGameOveround()
-    {
-        PlaySFX(sfxGameOverClip);
-    }
-    public void PlayStartGameSound()
-    {
-        PlaySFX(sfxStartGameClip);
-    }
-
-    //public void SetBGMVolume(float volume)
-    //{
-    //    bgmSource.volume = volume;
-    //}
-
-    public void SetMuteVolume(bool status)
-    {
-         
-        //sfxTouchSource.volume = volume;
-        sfxTouchSource.mute = status;
-        sfxGameOverSource.mute = status;
-        sfxStartGameSource.mute = status;
-        if (status == true)
+        foreach (var effect in effectSounds)
         {
-            buttonOn.SetActive(false);
-            buttonOff.SetActive(true);
+            effect.mute = mute;
         }
-        else
-        {
-            buttonOn.SetActive(true);
-            buttonOff.SetActive(false);
-        }    
     }
 }

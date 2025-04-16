@@ -13,9 +13,6 @@ public class Ground : MonoBehaviour
     private Vector3 initialPosition;
     private Vector2 initialTextureOffset;
 
-    public GameObject prefab;
-    private GameObject obj;
-
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -56,8 +53,6 @@ public class Ground : MonoBehaviour
         // Vector3 targetPosition = transform.position + Vector3.left * 30f; // Move left out of view
         Vector3 start = transform.position;
         Vector3 end = start + Vector3.left * 30f;
-        obj = Instantiate(prefab, new Vector3(11f, 0, 0), Quaternion.identity, gameObject.transform);
-        //obj.transform.position = new Vector3(0.45f, 0, 0);
         float duration = 5f; // Total time to move out
         float elapsed = 0f;
 
@@ -83,10 +78,6 @@ public class Ground : MonoBehaviour
         if (moveOutCoroutine != null)
         {
             StopCoroutine(moveOutCoroutine);
-        }
-        if (obj != null)
-        {
-            Destroy(obj);
         }
 
         transform.position = initialPosition;

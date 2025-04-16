@@ -363,10 +363,12 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Ground.cs"
 "Assets/Scripts/Heart.cs"
+"Assets/Scripts/InstructionManager.cs"
 "Assets/Scripts/Mini_Ground.cs"
 "Assets/Scripts/Obstacle.cs"
 "Assets/Scripts/Parallax.cs"
 "Assets/Scripts/Player.cs"
+"Assets/Scripts/SoundManager.cs"
 "Assets/Scripts/Spawner.cs"
 "Assets/Scripts/UnderGround.cs"
 -langversion:9.0
