@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
+        SoundManager.Instance.PlayGameOveround();
         player.ResetPlayer();
         Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
 
@@ -168,6 +169,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        SoundManager.Instance.PlayGameOveround();
         gameSpeed = 0f;
         gameOver = true;
         // enabled = false;
