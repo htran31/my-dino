@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -63,7 +64,7 @@ public class Player : MonoBehaviour
 
             if (character.isGrounded)
             {
-                direction = Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) ? Vector3.up * jumpForce : Vector3.down;
+                direction = (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) || Input.touchCount > 0) && !EventSystem.current.IsPointerOverGameObject() ? Vector3.up * jumpForce : Vector3.down;
             }
 
             character.Move(direction * Time.deltaTime);
@@ -80,7 +81,7 @@ public class Player : MonoBehaviour
             {
                 // Reset the gravity
                 gravity = 9.8f;
-                if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
+                if ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) || Input.touchCount > 0) && !EventSystem.current.IsPointerOverGameObject())
                 {
                     direction = Vector3.up * strength;
                 }
@@ -100,7 +101,7 @@ public class Player : MonoBehaviour
                 direction = Vector3.zero;
                 gravity = 1119.8f;
 
-                if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
+                if ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) || Input.touchCount > 0) && !EventSystem.current.IsPointerOverGameObject())
                 {
                     //horizontalSpeed += acceleration * Time.deltaTime;
                     //horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);

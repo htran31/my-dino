@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
             }
             return;
         }
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0) 
         {
             SoundManager.Instance.PlayClickSound();
         }
