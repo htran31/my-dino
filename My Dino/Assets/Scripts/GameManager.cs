@@ -210,6 +210,10 @@ public class GameManager : MonoBehaviour
             }
             return;
         }
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
+        {
+            SoundManager.Instance.PlayClickSound();
+        }
 
         gameSpeed += gameSpeedIncrease * Time.deltaTime;
         score += gameSpeed * Time.deltaTime;

@@ -96,18 +96,21 @@ public class Player : MonoBehaviour
 
                 if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
                 {
-                    horizontalSpeed += acceleration * Time.deltaTime;
-                    horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);
+                    //horizontalSpeed += acceleration * Time.deltaTime;
+                    //horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);
+                    direction = Vector3.right * strength;
                 }
                 else
                 {
                     // Nếu không nhấn gì => từ từ chậm lại về bên trái
-                    horizontalSpeed -= deceleration * Time.deltaTime;
-                    horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);
+                    //horizontalSpeed -= deceleration * Time.deltaTime;
+                    //horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);
                 }
 
                 // Di chuyển theo trục X
-                character.Move(new Vector3(horizontalSpeed, 0, 0) * Time.deltaTime);
+                //character.Move(new Vector3(horizontalSpeed, 0, 0) * Time.deltaTime);
+                direction += Vector3.left * 500f * Time.deltaTime;
+                transform.position += direction * Time.deltaTime;
             }
         }
     }
