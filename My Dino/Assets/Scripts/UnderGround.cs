@@ -33,7 +33,7 @@ public class UnderGround : MonoBehaviour
 
     public void Rotate()
     {
-        if (GameManager.Instance.gameOver) return; // remove?
+        if (GameManager.Instance.gameOver) return; 
 
         if (currentRotation != targetAngle)
         {
@@ -45,7 +45,7 @@ public class UnderGround : MonoBehaviour
 
     public void ResetRotation()
     {
-        if (GameManager.Instance.gameOver) return; // remove?
+        if (GameManager.Instance.gameOver) return; 
 
 
         if (currentRotation != initialAngle)

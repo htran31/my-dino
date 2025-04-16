@@ -6,7 +6,7 @@ public class Ground : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
     private GameManager gameManager;
-    public float moveSpeed = 10f;
+    public float moveSpeed = 12f;
     private bool isMovingOut = false;
     private bool canScroll = true;
     private Coroutine moveOutCoroutine;
@@ -33,10 +33,12 @@ public class Ground : MonoBehaviour
             meshRenderer.material.mainTextureOffset += speed * Time.deltaTime * Vector2.right;
         }
 
-        if (gameManager.score >= 30 && !isMovingOut)
+        if (gameManager.score >= 80 && !isMovingOut)
         {
             StartMovingOut();
         }
+
+        if (GameManager.Instance.gameOver) StopAllCoroutines();
     }
 
     private void StartMovingOut()

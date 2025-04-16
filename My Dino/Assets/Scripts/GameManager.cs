@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private BigDino bigDino;
     public Spawner spawner;
     public Parallax seaweed;
+    public FallingSpawner heart;
     private Ground ground;
     private Vector3 initialGroundPosition;
 
@@ -83,6 +84,7 @@ public class GameManager : MonoBehaviour
         scoreText.gameObject.SetActive(true);
         hiscoreText.gameObject.SetActive(true);
         seaweed.gameObject.SetActive(false);
+        heart.gameObject.SetActive(false);
         bigDino.gameObject.SetActive(false);
         spawner.gameObject.SetActive(false);
         score = 0f;
@@ -106,6 +108,7 @@ public class GameManager : MonoBehaviour
         startGameText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
         player.gameObject.SetActive(true);
+        heart.gameObject.SetActive(false);
         bigDino.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(true);
         hiscoreText.gameObject.SetActive(true);
@@ -118,8 +121,14 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.PlayGameOveround();
         player.ResetPlayer();
         Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
+        FallingObstacle[] fallingObstacles = FindObjectsOfType<FallingObstacle>();
 
         foreach (var obstacle in obstacles)
+        {
+            Destroy(obstacle.gameObject);
+        }
+
+        foreach (var obstacle in fallingObstacles)
         {
             Destroy(obstacle.gameObject);
         }
@@ -137,7 +146,6 @@ public class GameManager : MonoBehaviour
         fallingBackground1.ResetBackground();
         fallingBackground2.ResetBackground();
 
-
         //player.ResetPlayer();
 
         player.gameObject.SetActive(true);
@@ -146,6 +154,7 @@ public class GameManager : MonoBehaviour
         fallingBackground2.gameObject.SetActive(true);
 
         seaweed.gameObject.SetActive(false);
+        heart.gameObject.SetActive(false);
         bigDino.gameObject.SetActive(false);
         startButton.gameObject.SetActive(false);
         startGameText.gameObject.SetActive(false);
@@ -179,27 +188,15 @@ public class GameManager : MonoBehaviour
         bigDino.gameObject.SetActive(false);
         spawner.gameObject.SetActive(false);
         seaweed.gameObject.SetActive(false);
+        heart.gameObject.SetActive(false);
         ground.gameObject.SetActive(true);
         ground.DisableScroll();
-
-        //  if (isGameRunning == false)
-        //     {
-        //         if (Input.GetKeyDown(KeyCode.Space))
-        //         {
-        //             OnStartButtonClicked();
-        //         }
-        //         return;
-        //     }
 
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
         startButton.gameObject.SetActive(false);
         startGameText.gameObject.SetActive(false);
         UpdateHiscore();
-        //  if (Input.GetKeyDown(KeyCode.Space) && gameOver == false)
-        //     {
-        //         NewGame();
-        //     }
     }
 
 
@@ -217,69 +214,8 @@ public class GameManager : MonoBehaviour
         gameSpeed += gameSpeedIncrease * Time.deltaTime;
         score += gameSpeed * Time.deltaTime;
         scoreText.text = Mathf.FloorToInt(score).ToString("D5");
-        player.CheckOutOfBounds();
 
-        if (score >= 44 && score <= 55)
-        {
-            //spawner.gameObject.SetActive(false);
-            // mainCamera.transform.Translate(Vector3.down * 0.0254f);
-            CameraController.cameraDirection = CameraDirection.FB;
-        }
-        // Check for the score reaching 60
-        if (score >= 60 && score <= 90)
-        {
-            // RespawnObstacles(); // Call the method to respawn obstacles
-            spawner.gameObject.SetActive(false);
-            seaweed.gameObject.SetActive(true);
-        }
-
-        if (score >= 30 && score <= 55)
-        {
-            spawner.gameObject.SetActive(false);
-            seaweed.gameObject.SetActive(false);
-        }
-
-        if (score >= 80 && score <= 110)
-        {
-            fallingBackground1.gameObject.SetActive(true);
-            fallingBackground2.gameObject.SetActive(true);
-            fallingBackground1.StartFalling();
-            fallingBackground2.StartFalling();
-            seaweed.gameObject.SetActive(false);
-        }
-
-
-        UnderGround underGround = FindObjectOfType<UnderGround>();
-        if (score >= 80 && score <= 110)
-        {
-            fallingBackground1.gameObject.SetActive(true);
-            fallingBackground2.gameObject.SetActive(true);
-            fallingBackground1.StartFalling();
-            fallingBackground2.StartFalling();
-            seaweed.gameObject.SetActive(false);
-
-            if (underGround != null)
-            {
-                underGround.Rotate();
-            }
-        }
-        else
-        {
-            if (underGround != null)
-            {
-                underGround.ResetRotation();
-            }
-        }
-
-
-        if (score >= 160 && score <= 200 && !hasSpawnedBigDino)
-        {
-            hasSpawnedBigDino = true;
-            bigDino.gameObject.SetActive(true);
-            seaweed.gameObject.SetActive(false);
-            // player.transform.position = new Vector3(0, 0, 0);
-        }
-
+        UpdateBasedOnScore();
         UpdateHiscore();
     }
 
@@ -295,11 +231,66 @@ public class GameManager : MonoBehaviour
 
     public void UpdateBasedOnScore()
     {
-        // spawner.gameObject.SetActive(false);
-        // player.gameObject.SetActive(false);
+        if (score >= 80 && score <= 100)
+        {
+            spawner.gameObject.SetActive(false);
+            seaweed.gameObject.SetActive(false);
+        }
+        if (score >= 100 && score <= 110)
+        {
+            //spawner.gameObject.SetActive(false);
+            // mainCamera.transform.Translate(Vector3.down * 0.0254f);
+            CameraController.cameraDirection = CameraDirection.FB;
+        }
+        if (score >= 120)
+        {
+            player.CheckOutOfBounds();
+        }
+        if (score >= 120 && score <= 200)
+        {
+            spawner.gameObject.SetActive(false);
+            seaweed.gameObject.SetActive(true);
+        }
 
-        // You may also reset the camera position if it was moved down
-        // mainCamera.transform.Translate(Vector3.up * 0.0254f); // Use an appropriate value to reset the camera
+        if (score >= 200 && score <= 220)
+        {
+            fallingBackground1.gameObject.SetActive(true);
+            fallingBackground2.gameObject.SetActive(true);
+            fallingBackground1.StartFalling();
+            fallingBackground2.StartFalling();
+            seaweed.gameObject.SetActive(false);
+        }
+
+
+        UnderGround underGround = FindObjectOfType<UnderGround>();
+        if (score >= 200 && score <= 220)
+        {
+            if (underGround != null)
+            {
+                underGround.Rotate();
+            }
+        }
+        else
+        {
+            if (underGround != null)
+            {
+                underGround.ResetRotation();
+            }
+        }
+
+        if (score >= 250 && score <= 400 && !hasSpawnedBigDino)
+        {
+            hasSpawnedBigDino = true;
+            bigDino.gameObject.SetActive(true);
+            seaweed.gameObject.SetActive(false);
+            // player.transform.position = new Vector3(0, 0, 0);
+        }
+
+        if (score >= 270 && score <= 400)
+        {
+            seaweed.gameObject.SetActive(false);
+            heart.gameObject.SetActive(true);
+        }
     }
 
     private void UpdateHiscore()

@@ -11,8 +11,8 @@ public class Parallax : MonoBehaviour
     }
 
     public SpawnableObject[] objects;
-    public float minSpawnRate = 1f;
-    public float maxSpawnRate = 2f;
+    public float minSpawnRate = 0.5f;
+    public float maxSpawnRate = 1.5f;
 
     private void OnEnable()
     {
@@ -29,10 +29,10 @@ public class Parallax : MonoBehaviour
         // if (!gameObject.activeInHierarchy) return; 
 
         float spawnChance = Random.value;
-        float randomY = Random.Range(0f, 2f);
-        Debug.Log(randomY);
+        float randomY = Random.Range(-0.2f, 2.5f);
         Vector3 seaweedPosition = new Vector3(transform.position.x, randomY, transform.position.z);
 
+Debug.Log(randomY);
         foreach (SpawnableObject obj in objects)
         {
             if (spawnChance < obj.spawnChance)

@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
             // }
 
             // Check for player's score (assuming you have a GameManager script controlling the score)
-            if (score >= 50)
+            if (score >= 96)
             {
                 // Reset the gravity
                 gravity = 9.8f;
@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
                 transform.eulerAngles = rotation;
             }
 
-            if (score >= 155)
+            if (score >= 245)
             {
                 direction = Vector3.zero;
                 gravity = 1119.8f;
