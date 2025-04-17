@@ -67,6 +67,9 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 0
@@ -563,22 +566,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea37a12e17e74711b162ea8aeb7fc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashImage: {fileID: 1663933462}
-  flashDuration: 0.3
-  flickerInterval: 0.05
-  flashColor:
-    r: 1
-    g: 0
-    b: 0
-    a: 0.5
-  transparentColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  flashTimer: 0
-  flickerTimer: 0
-  isVisible: 1
 --- !u!1 &356154822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,22 +1264,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 946664718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ab48cfdbe07d4a23b9b6ebe33e96d1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e77c2d94c37a44b8b171cd0cf211003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   soundToggleButton: {fileID: 3900508747986971060}
   soundStateIcons:
-  - {fileID: 1851289172953269576, guid: 26eed70c503b89a4bb40d9264aa0ecd9, type: 3}
-  - {fileID: 515684192852704761, guid: 7aa867ac8be6b69429ab281ac070d648, type: 3}
-  - {fileID: 6099881080806763800, guid: 73cbf2ebfcaeba549a848801aa62cd79, type: 3}
+  - {fileID: 21300000, guid: 76fde19a2b9c6e44dbc4089f44afcf6d, type: 3}
+  - {fileID: 21300000, guid: a8b864dabfd82814fa304f57f493bcef, type: 3}
+  - {fileID: 21300000, guid: eb6153d47c82fd74b803b23020e690fb, type: 3}
   backgroundMusic: {fileID: 1674776513}
   effectSounds: []
   sfxGameOverSource: {fileID: 935550496}
   sfxTouchSource: {fileID: 76081425}
   sfxStartGameSource: {fileID: 2131439030}
   clickSFX: {fileID: 8300000, guid: 55f7dbaa57d22463daea29647e4714fe, type: 3}
-  sfxGameOverClip: {fileID: 8300000, guid: d3c64d336dcdb4280a9c6735c5e2b67b, type: 3}
-  sfxStartGameClip: {fileID: 8300000, guid: cc730e812d37e4530b21dba13842121e, type: 3}
+  sfxGameOverClip: {fileID: 8300000, guid: 6c28b53f71dd85f4f89f824d82d03fad, type: 3}
+  sfxStartGameClip: {fileID: 8300000, guid: bcfb8e95e292928468e9a5dd03120042, type: 3}
 --- !u!4 &946664722
 Transform:
   m_ObjectHideFlags: 0
@@ -2481,7 +2468,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 21b6b9a2364d94978a085db9165b7910, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 99f11eb3ac4689141aada0db4c43be3a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3729,7 +3716,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -24.72528, y: -26.156097}
+  m_AnchoredPosition: {x: -24.725342, y: -26.156128}
   m_SizeDelta: {x: -194.71033, y: -218.20178}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3497115802227564544
@@ -4112,7 +4099,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1851289172953269576, guid: 26eed70c503b89a4bb40d9264aa0ecd9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76fde19a2b9c6e44dbc4089f44afcf6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4142,7 +4129,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6692245597389841669, guid: a0ff6ecee1b0cd24886264285aadf4b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c78a6a2e1d74faa4f86969f9804e4487, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4163,6 +4150,7 @@ GameObject:
   - component: {fileID: 6718627844465864967}
   - component: {fileID: 2850625909914446719}
   - component: {fileID: 5780405353326132842}
+  - component: {fileID: 6881891291856973409}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -4170,6 +4158,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6881891291856973409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6881891291856973408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09be1b0b8a035014b8383df5d384c0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instructionPanel: {fileID: 4110370676483022230}
+  openButton: {fileID: 5183670311781971800}
+  closeButton: {fileID: 3726564743000595366}
+  instructionText: {fileID: 7168505294364930443}
+  randomInstructions: []
 --- !u!222 &6996580420129148000
 CanvasRenderer:
   m_ObjectHideFlags: 0
