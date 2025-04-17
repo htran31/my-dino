@@ -284,7 +284,7 @@ public class GameManager : MonoBehaviour
 
         if (score >= 250 && score <= 400 && !hasSpawnedBigDino)
         {
-            FindObjectOfType<FlashEffect>().TriggerFlash(2f);
+            //FindObjectOfType<FlashEffect>().TriggerFlash(2f);
             hasSpawnedBigDino = true;
             bigDino.gameObject.SetActive(true);
             seaweed.gameObject.SetActive(false);
