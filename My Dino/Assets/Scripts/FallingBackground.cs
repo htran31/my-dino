@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class FallingBackground : MonoBehaviour
 {
+    private Vector3 initialPosition;
     public float fallSpeed = 2.5f;
     private bool shouldFall = false;
-    private Vector3 initialPosition;
 
     void Start()
     {

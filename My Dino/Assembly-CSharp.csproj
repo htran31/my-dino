@@ -58,18 +58,21 @@
     <Compile Include="Assets\Scripts\Obstacle.cs" />
     <Compile Include="Assets\Scripts\Ground.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\Mini_Ground.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Scripts\UnderGround.cs" />
     <Compile Include="Assets\Scripts\FallingObstacle.cs" />
+    <Compile Include="Assets\Scripts\Cloud.cs" />
+    <Compile Include="Assets\Scripts\CloudSpawner.cs" />
     <Compile Include="Assets\Scripts\FallingBackground.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
+    <Compile Include="Assets\Scripts\InstructionManager.cs" />
     <Compile Include="Assets\Scripts\BigDino.cs" />
-    <Compile Include="Assets\Scripts\Heart.cs" />
     <Compile Include="Assets\box.cs" />
     <Compile Include="Assets\Scripts\AnimatedSprite.cs" />
     <Compile Include="Assets\Scripts\FallingSpawner.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
   </ItemGroup>
   <ItemGroup>

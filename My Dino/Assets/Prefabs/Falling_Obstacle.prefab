@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2882149201063772637}
   - component: {fileID: 7838433698907156512}
   - component: {fileID: 8185264572210986806}
-  - component: {fileID: 465986289524762357}
   m_Layer: 0
   m_Name: Falling_Obstacle
   m_TagString: Obstacle
@@ -30,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1.49, y: 1.49, z: 1.49}
+  m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: e60b80056a45d3e47b945da97de8fe14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6eb48c832075c624f81069fade3e4def, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,7 +105,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28, y: 0.25, z: 0.2}
+  m_Size: {x: 2.6, y: 3.99, z: 0.2}
   m_Center: {x: 0, y: 0.01, z: 0}
 --- !u!114 &8185264572210986806
 MonoBehaviour:
@@ -121,18 +120,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallSpeedMultiplier: 0.3
---- !u!114 &465986289524762357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6567954348611548259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fd87612e4c7a0b4e8b75a9843b441d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: e60b80056a45d3e47b945da97de8fe14, type: 3}
-  - {fileID: 21300000, guid: a47a4903c00dc604c9a38dd25d218caa, type: 3}

@@ -6,12 +6,13 @@ public class Player : MonoBehaviour
     private CharacterController character;
     private Vector3 direction;
     private Vector3 initialPosition;
+    public GameObject hat;
 
 
     public float initialGravity = 9.81f * 2f;
     public float initialJumpForce = 8f;
-    public float initialStrength = 5f;
-    public float initialTilt = 5f;
+    public float initialStrength = 6f;
+    public float initialTilt = 0.6f;
 
 
     public float gravity { get; private set; }
@@ -31,13 +32,12 @@ public class Player : MonoBehaviour
     private float deceleration = 2f;
     private float maxSpeed = 8f;
 
-    public GameObject hat;
 
 
     private void Awake()
     {
         character = GetComponent<CharacterController>();
-        initialPosition = new Vector3(-3.55f, 0, 0);
+        initialPosition = new Vector3(-4f, 0, 0);
 
         gravity = initialGravity;
         jumpForce = initialJumpForce;
@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
                 transform.eulerAngles = rotation;
             }
 
-            if (score >= 245)
+            if (score >= 235)
             {
                 //FindObjectOfType<FlashEffect>().TriggerFlash();
                 direction = Vector3.zero;
@@ -116,8 +116,12 @@ public class Player : MonoBehaviour
 
                 // Di chuyển theo trục X
                 //character.Move(new Vector3(horizontalSpeed, 0, 0) * Time.deltaTime);
-                direction += Vector3.left * 2.5f;
-                transform.position += direction * Time.deltaTime;
+                direction += Vector3.left * 2f;
+                transform.position += direction * Time.deltaTime * 2f;
+                Vector3 rotation = transform.eulerAngles;
+                rotation.z = direction.y * 0.01f;
+                transform.eulerAngles = rotation;
+                FindObjectOfType<AnimatedSprite>().startDinoGame3();
             }
         }
     }
@@ -131,9 +135,9 @@ public class Player : MonoBehaviour
         }
         else if (other.CompareTag("OptionPlayer"))
         {
-            hat.SetActive(true);
+            // hat.SetActive(true);
             Destroy(other.gameObject);
-            FindObjectOfType<AnimatedSprite>().startAnimTrex();
+            FindObjectOfType<AnimatedSprite>().startDinoGame2();
             Debug.Log("AnhNTT: " + other.ToString());
         }
     }
@@ -176,8 +180,9 @@ public class Player : MonoBehaviour
     public void ResetPlayer()
     {
         // Reset the player's position to the initial position
+        transform.position = initialPosition;
         transform.rotation = Quaternion.Euler(Vector3.zero);
-        hat.SetActive(false);
+        // hat.SetActive(false);
         // Reset any other variables or states as needed
         direction = Vector3.zero;
         isPaused = false; // Ensure the player is not paused

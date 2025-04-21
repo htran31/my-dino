@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd87612e4c7a0b4e8b75a9843b441d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
+  spritesDino:
   - {fileID: 21300000, guid: 10dd2617219c65f4ea318f2eeb6a8af4, type: 3}
   - {fileID: 21300000, guid: 98b92488144cbce49b12bf0b1caea1ce, type: 3}
+  spritesTrex: []

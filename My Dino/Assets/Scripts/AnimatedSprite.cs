@@ -4,10 +4,11 @@ using UnityEngine;
 public class AnimatedSprite : MonoBehaviour
 {
     public Sprite[] spritesDino;
+    public Sprite[] spritesDino2;
+    public Sprite[] spritesDino3;
+    private Sprite[] sprites;
     private SpriteRenderer spriteRenderer;
     private int frame;
-    public Sprite[] spritesTrex;
-    private Sprite[] sprites;
 
     private void Awake()
     {
@@ -41,10 +42,18 @@ public class AnimatedSprite : MonoBehaviour
 
         Invoke(nameof(Animate), 1f / GameManager.Instance.gameSpeed);
     }
-    public void startAnimTrex()
+
+    public void startDinoGame2()
     {
         CancelInvoke();
-        sprites = spritesTrex;
+        sprites = spritesDino2;
+        Invoke(nameof(Animate), 0f);
+    }
+
+    public void startDinoGame3()
+    {
+        CancelInvoke();
+        sprites = spritesDino3;
         Invoke(nameof(Animate), 0f);
     }
 }

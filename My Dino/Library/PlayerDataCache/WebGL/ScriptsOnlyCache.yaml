@@ -2,12 +2,20 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - AnimatedSprite
+    - BigDino
     - CameraController
+    - Cloud
+    - CloudSpawner
+    - FallingBackground
+    - FallingObstacle
+    - FallingSpawner
     - GameManager
     - Ground
+    - InstructionManager
     - Obstacle
     - Parallax
     - Player
+    - SoundManager
     - Spawner
     - UnderGround
     Unity.2D.Animation.Editor.dll:
@@ -60,6 +68,8 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
   serializedClasses:
     Assembly-CSharp:
+    - CloudSpawner/SpawnableObject
+    - FallingSpawner/SpawnableObject
     - Parallax/SpawnableObject
     - Spawner/SpawnableObject
     Unity.TextMeshPro:
@@ -126,6 +136,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
@@ -133,41 +147,57 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1648}
     - Class: 114
-      Script: {instanceID: 2342}
+      Script: {instanceID: 1826}
     - Class: 114
-      Script: {instanceID: 2872}
+      Script: {instanceID: 2344}
     - Class: 114
-      Script: {instanceID: 3124}
+      Script: {instanceID: 2876}
     - Class: 114
-      Script: {instanceID: 3476}
+      Script: {instanceID: 3128}
     - Class: 114
-      Script: {instanceID: 4750}
+      Script: {instanceID: 3460}
     - Class: 114
-      Script: {instanceID: 5070}
+      Script: {instanceID: 3480}
     - Class: 114
-      Script: {instanceID: 5320}
+      Script: {instanceID: 4754}
     - Class: 114
-      Script: {instanceID: 5434}
+      Script: {instanceID: 5074}
     - Class: 114
-      Script: {instanceID: 5808}
+      Script: {instanceID: 5324}
     - Class: 114
-      Script: {instanceID: 5986}
+      Script: {instanceID: 5438}
     - Class: 114
-      Script: {instanceID: 6088}
+      Script: {instanceID: 5810}
     - Class: 114
-      Script: {instanceID: 6692}
+      Script: {instanceID: 5988}
     - Class: 114
-      Script: {instanceID: 6906}
+      Script: {instanceID: 6090}
     - Class: 114
-      Script: {instanceID: 7222}
+      Script: {instanceID: 6226}
     - Class: 114
-      Script: {instanceID: 7312}
+      Script: {instanceID: 6430}
     - Class: 114
-      Script: {instanceID: 7992}
+      Script: {instanceID: 6698}
     - Class: 114
-      Script: {instanceID: 9354}
+      Script: {instanceID: 6912}
     - Class: 114
-      Script: {instanceID: 9638}
+      Script: {instanceID: 6940}
+    - Class: 114
+      Script: {instanceID: 7228}
+    - Class: 114
+      Script: {instanceID: 7318}
+    - Class: 114
+      Script: {instanceID: 7998}
+    - Class: 114
+      Script: {instanceID: 8948}
+    - Class: 114
+      Script: {instanceID: 9288}
+    - Class: 114
+      Script: {instanceID: 9364}
+    - Class: 114
+      Script: {instanceID: 9618}
+    - Class: 114
+      Script: {instanceID: 9650}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -237,6 +267,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: Selectable
+  - hash:
+      serializedVersion: 2
+      Hash: dcffc82f2534532c1b08b003022a1606
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FallingSpawner
   - hash:
       serializedVersion: 2
       Hash: ea1569413d805748b7cef2dcb4622c85
@@ -321,6 +357,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.Animation.Runtime
     namespaceName: UnityEngine.U2D.Animation
     className: SkeletonAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 7b577d1f677ce21c83c19bba8c391e06
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ScrollingBackground
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -443,7 +485,7 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
-      Hash: aec3037f2e1b7c0c3c2659c42c471d65
+      Hash: 20652ccf4a3f252fb57e898b559a9b53
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: BigDino
@@ -683,7 +725,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 29fcb4fac17440e898d80245c568b584
+      Hash: e02bf94d5ea2b3b890c0372ffaf938a3
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Player
@@ -761,7 +803,7 @@ ScriptsOnlyBuild:
     className: UnityOnTriggerStayMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 353688a68c0605f719d79479f98a6366
+      Hash: f0ee7c340e7f454a18993474ce351306
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Ground
@@ -821,7 +863,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: ef9f0595bb0be36b9867ba0a6a41a222
+      Hash: a9900417b41f592bb8651fc6404bd79f
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: AnimatedSprite
@@ -837,6 +879,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UIElements
     className: PanelEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: c13adf70ec9777b05527d1b32edc4c16
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Cloud
   - hash:
       serializedVersion: 2
       Hash: be140ea01a11255b651c097661ac55b1
@@ -861,6 +909,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: Text
+  - hash:
+      serializedVersion: 2
+      Hash: 61e275536ece070cc0e632151b6f59c4
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: InstructionManager
   - hash:
       serializedVersion: 2
       Hash: f6831ac80ec81c5d5b370c0ed0fee997
@@ -893,13 +947,19 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
+      Hash: 59eadf3da66ddc4ab4ba8b6ddef6edb4
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SoundManager
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnMouseUpAsButtonMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 751e5bae2a317288c2ab58d66687092b
+      Hash: 0527ebfc740171cffcda45ec5d0fa5f3
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Obstacle
@@ -1013,7 +1073,7 @@ ScriptsOnlyBuild:
     className: UnityOnTriggerEnter2DMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 969a20745e32c9d9c8436c60d83104a1
+      Hash: 0460f9f88dc52f77ece955909b9a1601
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: CameraController
@@ -1139,6 +1199,12 @@ ScriptsOnlyBuild:
     className: SpriteLibraryAsset
   - hash:
       serializedVersion: 2
+      Hash: d70197ccab19f5d4fb9f87087aceeaa7
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FallingObstacle
+  - hash:
+      serializedVersion: 2
       Hash: 3324a70611b197df9927d1019ae24ce4
     assemblyName: Unity.2D.PixelPerfect
     namespaceName: UnityEngine.U2D
@@ -1179,6 +1245,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.Animation.Runtime
     namespaceName: UnityEngine.U2D.Animation
     className: SpriteLibrarySourceAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 33e8e229a21f47ad02dd0561293a2bd5
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FallingBackground
   - hash:
       serializedVersion: 2
       Hash: dcffc82f2534532c1b08b003022a1606
@@ -1223,13 +1295,19 @@ ScriptsOnlyBuild:
     className: FabrikSolver2D
   - hash:
       serializedVersion: 2
+      Hash: 57d0902e9efe5654e12f0bd59874aba1
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CloudSpawner
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnTriggerExit2DMessageListener
   - hash:
       serializedVersion: 2
-      Hash: dcf44af7404c8cc79c9b3bab373adcb8
+      Hash: 1dd6eaf19683b261f3b1dbd3443bb180
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager

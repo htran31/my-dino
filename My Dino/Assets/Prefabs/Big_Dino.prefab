@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1239658690144208355}
   - component: {fileID: -5644751376028206987}
   - component: {fileID: 3547388692130335321}
+  - component: {fileID: -3818855028944392692}
   m_Layer: 0
   m_Name: Big_Dino
   m_TagString: Obstacle
@@ -115,7 +116,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012053086316647298}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d555a3757ca78d6419250522854764a5, type: 3}
   m_Name: 
@@ -135,3 +136,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c6cc8b5806e7c44b3aceaaaaaa323d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeedMultiplier: 1
+--- !u!114 &-3818855028944392692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012053086316647298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd87612e4c7a0b4e8b75a9843b441d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritesDino:
+  - {fileID: 21300000, guid: ad879db34cbd37e46a52715ba8fbd625, type: 3}
+  - {fileID: 21300000, guid: e9d06ea953b2dab46be88419470da33e, type: 3}
+  spritesDino2: []
+  spritesDino3: []

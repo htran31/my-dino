@@ -6,15 +6,15 @@ public class Ground : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
     private GameManager gameManager;
-    public float moveSpeed = 12f;
-    private bool isMovingOut = false;
-    private bool canScroll = true;
     private Coroutine moveOutCoroutine;
     private Vector3 initialPosition;
     private Vector2 initialTextureOffset;
-
     public GameObject prefab;
     private GameObject obj;
+    public float moveSpeed = 12f;
+    private bool isMovingOut = false;
+    private bool canScroll = true;
+
 
     private void Awake()
     {

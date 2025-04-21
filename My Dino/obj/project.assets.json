@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hoang\\Downloads\\Projects\\game\\My Dino\\Assembly-CSharp.csproj",
+      "projectUniqueName": "C:\\Users\\hoang\\Downloads\\GameProject\\my-dino\\My Dino\\Assembly-CSharp.csproj",
       "projectName": "Assembly-CSharp",
-      "projectPath": "C:\\Users\\hoang\\Downloads\\Projects\\game\\My Dino\\Assembly-CSharp.csproj",
+      "projectPath": "C:\\Users\\hoang\\Downloads\\GameProject\\my-dino\\My Dino\\Assembly-CSharp.csproj",
       "packagesPath": "C:\\Users\\hoang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hoang\\Downloads\\Projects\\game\\My Dino\\obj\\",
+      "outputPath": "C:\\Users\\hoang\\Downloads\\GameProject\\my-dino\\My Dino\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hoang\\AppData\\Roaming\\NuGet\\NuGet.Config"

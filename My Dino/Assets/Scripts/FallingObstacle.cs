@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class FallingObstacle : MonoBehaviour
 {
+    [SerializeField] private float fallSpeedMultiplier = 3f; 
     private float bottomEdge;
 
-    [SerializeField] private float fallSpeedMultiplier = 1f; 
 
     private void Start()
     {

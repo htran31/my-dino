@@ -32,7 +32,7 @@ public class Parallax : MonoBehaviour
         float randomY = Random.Range(-0.2f, 2.5f);
         Vector3 seaweedPosition = new Vector3(transform.position.x, randomY, transform.position.z);
 
-Debug.Log(randomY);
+        Debug.Log(randomY);
         foreach (SpawnableObject obj in objects)
         {
             if (spawnChance < obj.spawnChance)

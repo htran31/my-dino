@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public FallingSpawner heart;
     private Ground ground;
     private Vector3 initialGroundPosition;
+    public CloudSpawner cloudSpawner;
 
     public float initialGameSpeed = 5f;
     public float gameSpeedIncrease = 0.055f;
@@ -112,13 +113,13 @@ public class GameManager : MonoBehaviour
         bigDino.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(true);
         hiscoreText.gameObject.SetActive(true);
-
+        
         NewGame();
     }
 
     public void NewGame()
     {
-        SoundManager.Instance.PlayGameOveround();
+        SoundManager.Instance.PlayStartGameSound();
         Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
         FallingObstacle[] fallingObstacles = FindObjectsOfType<FallingObstacle>();
 
@@ -144,8 +145,8 @@ public class GameManager : MonoBehaviour
 
         fallingBackground1.ResetBackground();
         fallingBackground2.ResetBackground();
+        cloudSpawner.ResetClouds();
 
-        //player.ResetPlayer();
 
         player.gameObject.SetActive(true);
         player.ResetPlayer();
@@ -246,11 +247,11 @@ public class GameManager : MonoBehaviour
             // mainCamera.transform.Translate(Vector3.down * 0.0254f);
             CameraController.cameraDirection = CameraDirection.FB;
         }
-        if (score >= 120)
+        if (score >= 100)
         {
             player.CheckOutOfBounds();
         }
-        if (score >= 120 && score <= 200)
+        if (score >= 110 && score <= 200)
         {
             spawner.gameObject.SetActive(false);
             seaweed.gameObject.SetActive(true);
@@ -284,14 +285,13 @@ public class GameManager : MonoBehaviour
 
         if (score >= 250 && score <= 400 && !hasSpawnedBigDino)
         {
-            //FindObjectOfType<FlashEffect>().TriggerFlash(2f);
             hasSpawnedBigDino = true;
             bigDino.gameObject.SetActive(true);
             seaweed.gameObject.SetActive(false);
             // player.transform.position = new Vector3(0, 0, 0);
         }
 
-        if (score >= 270 && score <= 400)
+        if (score >= 252 && score <= 400)
         {
             seaweed.gameObject.SetActive(false);
             heart.gameObject.SetActive(true);

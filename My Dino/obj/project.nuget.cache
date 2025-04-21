@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "n+wBD91JvuUTrgJ30pPd4mCw6bNwggX1NuNq4cmb3mhqynkgpvaswD4NMD8ccLk1RhhvEwJtLm4SonnkR2r4bQ==",
+  "dgSpecHash": "EN43l4VmRqye0p0WXqnqd7R98P3Fp44wGsGm5x95WksqbQED/slO2jVFzH2qTZm9JySQ2mnzhh2B879HlnZ8eA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hoang\\Downloads\\Projects\\game\\My Dino\\Assembly-CSharp.csproj",
+  "projectFilePath": "C:\\Users\\hoang\\Downloads\\GameProject\\my-dino\\My Dino\\Assembly-CSharp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

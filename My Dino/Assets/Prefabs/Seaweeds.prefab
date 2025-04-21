@@ -132,9 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd87612e4c7a0b4e8b75a9843b441d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 541c28a1a519e6b43bee025dfdf2a067, type: 3}
-  - {fileID: 21300000, guid: a7247b6b88764cc40a6139c9c6bcd61a, type: 3}
+  spritesDino: []
+  spritesTrex: []
 --- !u!1 &3877594172692940551
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +146,7 @@ GameObject:
   - component: {fileID: 3334945414666069230}
   m_Layer: 0
   m_Name: Seaweeds
-  m_TagString: Obstacle
+  m_TagString: Seaweed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -313,6 +312,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd87612e4c7a0b4e8b75a9843b441d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: ad5ae8b46fee6b3449b3bf298fd2512d, type: 3}
-  - {fileID: 21300000, guid: 58b9af3f136366b40b7159858aa84dd9, type: 3}
+  spritesDino: []
+  spritesTrex: []

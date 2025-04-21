@@ -14,14 +14,14 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] Vector3 dinoCameraPosition;
     [SerializeField] Vector3 fbCameraPosition;
-    //[SerializeField] Transform centerReference;
-    [SerializeField] float movingProportion;
     [SerializeField] Transform dino;
+    [SerializeField] float movingProportion;
+    //[SerializeField] Transform centerReference;
 
     private CameraDirection lastCameraDirection;
     public static CameraDirection cameraDirection = CameraDirection.DINO;
-    private float slowSpeed = 0.08f;
-    private float fastSpeed = 0.2f;
+    private float slowSpeed = 0.0077f;
+    private float fastSpeed = 0.1f;
 
 
     // Start is called before the first frame update
@@ -51,9 +51,19 @@ public class CameraController : MonoBehaviour
 
     private void UpdateSpeed()
     {
+        float score = GameManager.Instance.score;
         if (lastCameraDirection == CameraDirection.DINO && cameraDirection == CameraDirection.FB)
         {
-            movingProportion = slowSpeed;
+            if (score >= 100 && score < 104)
+            {
+                movingProportion = slowSpeed;
+            }
+            if (score >= 104 && score < 110)
+            {
+                movingProportion = slowSpeed * 1.5f;
+            }
+
+
         }
         else if (lastCameraDirection == CameraDirection.FB && cameraDirection == CameraDirection.DINO)
         {
