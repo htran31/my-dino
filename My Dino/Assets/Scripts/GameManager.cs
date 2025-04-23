@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     public FallingBackground fallingBackground1;
     public FallingBackground fallingBackground2;
 
+    public TextMeshProUGUI NamePlayerText;
 
 
 
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetFloat("hiscore", 0);
         ground = FindObjectOfType<Ground>();
         player = FindObjectOfType<Player>();
         bigDino = FindObjectOfType<BigDino>();
@@ -113,7 +115,7 @@ public class GameManager : MonoBehaviour
         bigDino.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(true);
         hiscoreText.gameObject.SetActive(true);
-        
+        NamePlayerText.text = PlayFabLeaderboardManager.Instance.playerNameInput.text;
         NewGame();
     }
 
@@ -198,6 +200,14 @@ public class GameManager : MonoBehaviour
         startButton.gameObject.SetActive(false);
         startGameText.gameObject.SetActive(false);
         UpdateHiscore();
+
+        float hiscore = PlayerPrefs.GetFloat("hiscore", 0);
+
+        if (score >= hiscore)
+        {
+
+            PlayFabLeaderboardManager.Instance.OnSubmitScore((int)score);
+        }
     }
 
 
