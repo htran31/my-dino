@@ -22,7 +22,7 @@ public class InstructionManager : MonoBehaviour
     }
     void OpenInstructions()
     {
-        openButton.SetActive(false);
+        openButton.SetActive(true);
         instructionPanel.SetActive(true);
 
         if (randomInstructions.Length > 0)

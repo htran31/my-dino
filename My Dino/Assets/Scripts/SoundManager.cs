@@ -87,7 +87,7 @@ public class SoundManager : MonoBehaviour
         }
 
         // Cập nhật icon tương ứng
-        soundToggleButton.image.sprite = soundStateIcons[(int)currentSoundState];
+        //soundToggleButton.image.sprite = soundStateIcons[(int)currentSoundState];
     }
 
     void SetEffectsMute(bool mute)

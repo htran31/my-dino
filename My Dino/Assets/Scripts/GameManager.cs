@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     private Ground ground;
     private Vector3 initialGroundPosition;
     public CloudSpawner cloudSpawner;
+    public Button soundBtn;
+    public Button instructionBtn;
+    public Button leaderBoardBtn;
+
 
     public float initialGameSpeed = 5f;
     public float gameSpeedIncrease = 0.055f;
@@ -83,6 +87,9 @@ public class GameManager : MonoBehaviour
         startButton.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(false);
         startGameText.gameObject.SetActive(true);
+        soundBtn.gameObject.SetActive(true);
+        instructionBtn.gameObject.SetActive(true);
+        leaderBoardBtn.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(true);
         hiscoreText.gameObject.SetActive(true);
@@ -109,6 +116,9 @@ public class GameManager : MonoBehaviour
         startButton.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(false);
         startGameText.gameObject.SetActive(false);
+        soundBtn.gameObject.SetActive(false);
+        instructionBtn.gameObject.SetActive(false);
+        leaderBoardBtn.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
         player.gameObject.SetActive(true);
         heart.gameObject.SetActive(false);
@@ -152,7 +162,7 @@ public class GameManager : MonoBehaviour
 
         player.gameObject.SetActive(true);
         player.ResetPlayer();
-        spawner.gameObject.SetActive(true);
+        spawner.gameObject.SetActive(false);
         fallingBackground1.gameObject.SetActive(true);
         fallingBackground2.gameObject.SetActive(true);
 
@@ -161,6 +171,9 @@ public class GameManager : MonoBehaviour
         bigDino.gameObject.SetActive(false);
         startButton.gameObject.SetActive(false);
         startGameText.gameObject.SetActive(false);
+        soundBtn.gameObject.SetActive(false);
+        instructionBtn.gameObject.SetActive(false);
+        leaderBoardBtn.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
 
@@ -188,7 +201,7 @@ public class GameManager : MonoBehaviour
         isGameRunning = false;
 
         player.gameObject.SetActive(false);
-        bigDino.gameObject.SetActive(false);
+        bigDino.gameObject.SetActive(true);
         spawner.gameObject.SetActive(false);
         seaweed.gameObject.SetActive(false);
         heart.gameObject.SetActive(false);
@@ -199,6 +212,9 @@ public class GameManager : MonoBehaviour
         retryButton.gameObject.SetActive(true);
         startButton.gameObject.SetActive(false);
         startGameText.gameObject.SetActive(false);
+        soundBtn.gameObject.SetActive(true);
+        instructionBtn.gameObject.SetActive(true);
+        leaderBoardBtn.gameObject.SetActive(true);
         UpdateHiscore();
 
         float hiscore = PlayerPrefs.GetFloat("hiscore", 0);
@@ -221,7 +237,7 @@ public class GameManager : MonoBehaviour
             }
             return;
         }
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0) 
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0)
         {
             SoundManager.Instance.PlayClickSound();
         }
@@ -239,7 +255,7 @@ public class GameManager : MonoBehaviour
         UnderGround underGround = FindObjectOfType<UnderGround>();
         if (underGround != null)
         {
-            underGround.Rotate();
+            // underGround.Rotate();
         }
     }
 
@@ -257,14 +273,14 @@ public class GameManager : MonoBehaviour
             // mainCamera.transform.Translate(Vector3.down * 0.0254f);
             CameraController.cameraDirection = CameraDirection.FB;
         }
-        if (score >= 100)
+        if (score >= 104)
         {
             player.CheckOutOfBounds();
         }
         if (score >= 110 && score <= 200)
         {
             spawner.gameObject.SetActive(false);
-            seaweed.gameObject.SetActive(true);
+            seaweed.gameObject.SetActive(false);
         }
 
         if (score >= 200 && score <= 220)
@@ -282,7 +298,7 @@ public class GameManager : MonoBehaviour
         {
             if (underGround != null)
             {
-                underGround.Rotate();
+                // underGround.Rotate();
             }
         }
         else
@@ -293,7 +309,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (score >= 250 && score <= 400 && !hasSpawnedBigDino)
+        if (score >= 250 && score <= 800 && !hasSpawnedBigDino)
         {
             hasSpawnedBigDino = true;
             bigDino.gameObject.SetActive(true);
@@ -301,7 +317,9 @@ public class GameManager : MonoBehaviour
             // player.transform.position = new Vector3(0, 0, 0);
         }
 
-        if (score >= 252 && score <= 400)
+
+
+        if (score >= 252 && score <= 800)
         {
             seaweed.gameObject.SetActive(false);
             heart.gameObject.SetActive(true);

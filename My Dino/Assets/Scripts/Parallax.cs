@@ -29,7 +29,7 @@ public class Parallax : MonoBehaviour
         // if (!gameObject.activeInHierarchy) return; 
 
         float spawnChance = Random.value;
-        float randomY = Random.Range(-0.2f, 2.5f);
+        float randomY = Random.Range(-0.6f, 2.2f);
         Vector3 seaweedPosition = new Vector3(transform.position.x, randomY, transform.position.z);
 
         Debug.Log(randomY);

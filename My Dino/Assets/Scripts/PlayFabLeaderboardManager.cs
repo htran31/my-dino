@@ -163,7 +163,7 @@ public class PlayFabLeaderboardManager : MonoBehaviour
         }
         else
         {
-            playerNameInput.text = "Invalid input. Please try again.";
+            playerNameInput.text = "who i am :D";
         }
     }
 
